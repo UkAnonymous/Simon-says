@@ -5,33 +5,23 @@ let btns = ["yellow", "red", "green", "purple"];
 
 let started = false;
 let level = 0;
-let highScore = 0;
 
 let h2 = document.querySelector("h2");
-let startBtn = document.getElementById("start");
+let highScore = localStorage.getItem("highScore") || 0;
 
-// Desktop: Start game on keypress
 document.addEventListener("keypress", function () {
-  if (!started) {
-    startGame();
+  if (started == false) {
+    started = true;
+    levelUp();
   }
 });
 
-// Mobile: Start game on Start button click
-startBtn.addEventListener("click", function () {
-  if (!started) {
-    startGame();
+document.getElementById("start").addEventListener("click", function () {
+  if (started == false) {
+    started = true;
+    levelUp();
   }
 });
-
-function startGame() {
-  started = true;
-  startBtn.style.display = "none";
-  level = 0;
-  gameSeq = [];
-  userSeq = [];
-  levelUp();
-}
 
 function gameFlash(btn) {
   btn.classList.add("flash");
@@ -50,28 +40,30 @@ function userFlash(btn) {
 function levelUp() {
   userSeq = [];
   level++;
-  h2.innerText = `Level ${level}`;
+  h2.innerText = Level ${level} | High Score: ${highScore};
 
   let randIdx = Math.floor(Math.random() * 4);
   let randColor = btns[randIdx];
-  let randBtn = document.querySelector(`.${randColor}`);
+  let randBtn = document.querySelector(.${randColor});
   gameSeq.push(randColor);
   gameFlash(randBtn);
 }
 
 function checkAns(idx) {
   if (userSeq[idx] === gameSeq[idx]) {
-    if (userSeq.length === gameSeq.length) {
+    if (userSeq.length == gameSeq.length) {
       setTimeout(levelUp, 1000);
     }
   } else {
     if (level > highScore) {
       highScore = level;
+      localStorage.setItem("highScore", highScore);
     }
-    h2.innerHTML = `Game Over! Your Score was <b>${level}</b><br>High Score: <b>${highScore}</b><br>Press any key or tap Start to play again.`;
-    document.body.style.backgroundColor = "red";
-    setTimeout(() => {
-      document.body.style.backgroundColor = "white";
+
+    h2.innerHTML = Game over! Your Score was <b>${level}</b> <br> High Score: <b>${highScore}</b><br>Press any key or tap Start to play again.;
+    document.querySelector("body").style.backgroundColor = "red";
+    setTimeout(function () {
+      document.querySelector("body").style.backgroundColor = "white";
     }, 150);
     reset();
   }
@@ -80,21 +72,19 @@ function checkAns(idx) {
 function btnPress() {
   let btn = this;
   userFlash(btn);
-
   let userColor = btn.getAttribute("id");
   userSeq.push(userColor);
-
   checkAns(userSeq.length - 1);
 }
 
 let allBtns = document.querySelectorAll(".btn");
 allBtns.forEach(function (btn) {
-  if (btn.id !== "start") {
-    btn.addEventListener("click", btnPress);
-  }
+  btn.addEventListener("click", btnPress);
 });
 
 function reset() {
   started = false;
-  startBtn.style.display = "inline-block";
+  gameSeq = [];
+  userSeq = [];
+  level = 0;
 }
