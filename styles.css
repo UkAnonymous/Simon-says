@@ -1,80 +1,69 @@
 body {
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-    transition: background-color 0.5s;
-}
-
-h1 {
-    font-size: 3rem;
-    margin-top: 30px;
-    color: #333;
-}
-
-h2 {
-    font-size: 1.5rem;
-    color: #666;
-}
-
-h3 {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: #444;
-}
-
-.btn-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-}
-
-.line-one,
-.line-two {
-    display: flex;
-    justify-content: center;
+  text-align: center;
+  font-family: Arial, sans-serif;
 }
 
 .btn {
-    height: 150px;
-    width: 150px;
-    border-radius: 20%;
-    border: 5px solid black;
-    margin: 1rem;
-    font-size: 2rem;
-    color: white;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
+  height: 200px;
+  width: 200px;
+  border-radius: 20%;
+  border: 10px solid black;
+  margin: 2.5rem;
+  font-size: 2rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.1s;
 }
 
-.btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+.btn-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.line-one, .line-two {
+  display: flex;
 }
 
 .yellow {
-    background-color: #f99b45;
+  background-color: #f99b45;
 }
 .red {
-    background-color: #d95980;
+  background-color: #d95980;
 }
 .green {
-    background-color: #63aac0;
+  background-color: #63aac0;
 }
 .purple {
-    background-color: #5579e5;
+  background-color: #5579e5;
 }
 
 .flash {
-    background-color: white !important;
-    box-shadow: 0 0 20px white;
+  background-color: white !important;
+}
+.userflash {
+  background-color: green !important;
 }
 
-.userflash {
-    background-color: limegreen !important;
-    box-shadow: 0 0 20px limegreen;
+#start {
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: #444;
+  color: white;
+  border-radius: 10px;
+  border: none;
+}
+
+#instructions {
+  font-size: 1.1rem;
+  color: #333;
+  max-width: 600px;
+  margin: 10px auto;
+  padding: 0 20px;
+  line-height: 1.6;
 }
